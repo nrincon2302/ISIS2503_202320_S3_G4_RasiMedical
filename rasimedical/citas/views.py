@@ -14,7 +14,7 @@ def citas_view(request):
 
 
     if request.method == 'POST':
-        cita_dto = pl.create_cita(json.loads(request.body))
+        cita_dto = vl.create_cita(json.loads(request.body))
         cita = serializers.serialize('json', [cita_dto,])
         return HttpResponse(cita, 'application/json')
 
@@ -29,7 +29,7 @@ def cita_view(request, pk):
 
         
 
-@csrf_excempt
+@csrf_exempt
 def cita_view(request, pk):
     if request.method == 'GET':
         cita_dto = vl.get_cita(pk)
@@ -38,7 +38,7 @@ def cita_view(request, pk):
 
     if request.method == 'PUT':
         cita_dto = vl.update_cita(pk, json.loads(request.body))
-        cita = serializers.serialize('json', [variable_dto,])
+        cita = serializers.serialize('json', [cita_dto,])
         return HttpResponse(cita, 'application/json')
 
 
