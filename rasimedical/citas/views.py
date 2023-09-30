@@ -1,4 +1,10 @@
 from django.shortcuts import render
+from .logic import logic_citas as vl
+from django.http import HttpResponse
+from django.core import serializers
+import json
+from django.views.decorators.csrf import csrf_exempt
+
 
 def citas_view(request):
     if request.method == 'GET':
