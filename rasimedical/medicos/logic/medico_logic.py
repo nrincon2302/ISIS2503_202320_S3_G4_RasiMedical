@@ -19,7 +19,7 @@ def update_medico(pac_pk, new_pac):
     return medico
 
 def create_medico(pac):
-    medico = Medico(nombre=pac["nombre"], apellido=pac["apellido"], edad=pac["edad"], 
-                    especialidad=pac["especialidad"],correo=pac["correo"])
+    medico = Medico(nombre=pac["nombre"].value(), apellido=pac["apellido"].value(), edad=pac["edad"].value(), 
+                    especialidad=pac["especialidad"].value(),correo=pac["correo"].value())
     medico.save()
     return medico
