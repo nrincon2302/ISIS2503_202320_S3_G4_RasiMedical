@@ -1,30 +1,35 @@
-from django.shortcuts import render
-from django.contrib import messages
-from django.http import HttpResponseRedirect
-from django.urls import reverse
-from .forms import MedicoForm
-from .logic.medico_logic import get_medicos, create_medico
+from .logic import medico_logic as pl
+from django.http import HttpResponse
+from django.core import serializers
+import json
+from django.views.decorators.csrf import csrf_exempt
 
-def medico_list(request):
-    medicos = get_medicos()
-    context = {
-        'medico_list': medicos
-    }
-    return render(request, 'Medico/medicos.html', context)
-
-def variable_create(request):
-    if request.method == 'POST':
-        form = MedicoForm(request.POST)
-        if form.is_valid():
-            create_medico(form)
-            messages.add_message(request, messages.SUCCESS, 'Successfully created medico')
-            return HttpResponseRedirect(reverse('medicoCreate'))
+@csrf_exempt
+def medicos_view(request):
+    if request.method == 'GET':
+        id = request.GET.get("id", None)
+        if id:
+            medico_dto = pl.get_paciente(id)
+            medico = serializers.serialize('json', [medico_dto,])
+            return HttpResponse(medico, 'application/json')
         else:
-            print(form.errors)
-    else:
-        form = MedicoForm()
+            medico_dto = pl.get_medicos()
+            medicos = serializers.serialize('json', medico_dto)
+            return HttpResponse(medicos, 'application/json')
 
-    context = {
-        'form': form,
-    }
-    return render(request, 'Medico/medicoCreate.html', context)
+    if request.method == 'POST':
+        medico_dto = pl.get_medicos(json.loads(request.body))
+        medico = serializers.serialize('json', [medico_dto,])
+        return HttpResponse(medico, 'application/json')
+
+@csrf_exempt
+def medico_view(request, pk):
+    if request.method == 'GET':
+        medico_dto = pl.get_paciente(pk)
+        paciente = serializers.serialize('json', [medico_dto,])
+        return HttpResponse(paciente, 'application/json')
+
+    if request.method == 'PUT':
+        medico_dto = pl.update_medico(pk, json.loads(request.body))
+        paciente = serializers.serialize('json', [medico_dto,])
+        return HttpResponse(paciente, 'application/json')
