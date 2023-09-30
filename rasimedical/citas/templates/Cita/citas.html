@@ -4,10 +4,10 @@
 <div class="content">
     <div class="">
         <div class="page-header-title">
-            <h4 class="page-title">Médicos</h4>
+            <h4 class="page-title">Citas</h4>
             <div style="text-align:right;">
                 <button type="button" class="btn btn-success waves-effect waves-light"
-                        onClick=" window.location.href='/medicocreate' " style="text-align:center;">+
+                        onClick=" window.location.href='citacreate/' " style="text-align:center;">+
                 </button>
             </div>
         </div>
@@ -25,33 +25,27 @@
                     <table class="table table-hover">
                         <thead>
                         <tr style="color:#0E2EB0">
-                            <th>Médico</th>
+                            <th>Cita</th>
                         </tr>
                         </thead>
                         <tbody>
 
-                        {% for medico in medico_list %}
+                        {% for cita in cita_list %}
                         <tr>
-                            <td>{{ medico.nombre }}</td>
+                            <td>{{ cita.fecha }}</td>
                         </tr>
-
                         <tr>
-                          <td>{{ medico.apellido }}</td>
+                            <td>{{ cita.consultorio }}</td>
                         </tr>
-
                         <tr>
-                          <td>{{ medico.especialidad }}</td>
+                            <td>{{ cita.hora }}</td>
                         </tr>
-
                         <tr>
-                          <td>{{ medico.correo }}</td>
+                            <td>{{ cita.paciente }}</td>
                         </tr>
-
                         <tr>
-                          <td>{{ medico.edad }}</td>
+                            <td>{{ cita.medico }}</td>
                         </tr>
-
-
                         {% endfor %}
 
                         </tbody>
