@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from .forms import MeidcoForm
+from .forms import MedicoForm
 from .logic.medico_logic import get_medicos, create_medico
 
 def medico_list(request):
@@ -22,7 +22,7 @@ def variable_create(request):
         else:
             print(form.errors)
     else:
-        form = MeidcoForm()
+        form = MedicoForm()
 
     context = {
         'form': form,
