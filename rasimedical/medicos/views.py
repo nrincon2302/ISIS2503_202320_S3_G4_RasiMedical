@@ -25,11 +25,11 @@ def medicos_view(request):
 @csrf_exempt
 def medico_view(request, pk):
     if request.method == 'GET':
-        medico_dto = pl.get_paciente(pk)
-        paciente = serializers.serialize('json', [medico_dto,])
-        return HttpResponse(paciente, 'application/json')
+        medico_dto = pl.get_medico(pk)
+        medico = serializers.serialize('json', [medico_dto,])
+        return HttpResponse(medico, 'application/json')
 
     if request.method == 'PUT':
         medico_dto = pl.update_medico(pk, json.loads(request.body))
-        paciente = serializers.serialize('json', [medico_dto,])
-        return HttpResponse(paciente, 'application/json')
+        medico = serializers.serialize('json', [medico_dto,])
+        return HttpResponse(medico, 'application/json')
