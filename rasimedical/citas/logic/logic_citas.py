@@ -23,9 +23,9 @@ def update_cita(cit_pk, new_cita):
     return cita
 
 
-def create_cita(cit):
-    cita = Cita(fecha=cit["fecha"], hora=cit["hora"], consultorio=cit["consultorio"], paciente=cit["paciente"], medico=cit["medico"])
-    
+def create_cita(cit, pac_id, med_id):
+    cita = Cita(fecha=cit["fecha"].value(), hora=cit["hora"].value(), 
+                consultorio=cit["consultorio"].value(), paciente=pac_id, medico=med_id)
     cita.save()
     return cita
 

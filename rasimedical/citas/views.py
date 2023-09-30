@@ -2,6 +2,10 @@ from django.shortcuts import render
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+
+from .models import Medico
+from .models import Paciente
+
 from .forms import CitasForm
 from .logic.logic_citas import get_citas, create_cita, get_cita, update_cita
 
@@ -16,9 +20,16 @@ def cita_create(request):
     if request.method == 'POST':
         form = CitasForm(request.POST)
         if form.is_valid():
-            create_cita(form)
-            messages.add_message(request, messages.SUCCESS, 'Successfully created cita')
-            return HttpResponseRedirect(reverse('citaCreate'))
+
+            paciente_pk = form["paciente"].value()
+            paciente = Paciente.objects.get(pk=paciente_pk)
+            medico_pk = form["medico"].value()
+            medico = Medico.objects.get(pk=medico_pk)
+            print("EL PACIENTE ES " + str(paciente))
+            print("EL MEDICO ES " + str(medico))
+
+            create_cita(form, paciente, medico)
+
         else:
             print(form.errors)
     else:
