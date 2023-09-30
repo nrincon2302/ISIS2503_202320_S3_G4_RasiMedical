@@ -1,35 +1,30 @@
-from .logic import pacientes_logic as pl
-from django.http import HttpResponse
-from django.core import serializers
-import json
-from django.views.decorators.csrf import csrf_exempt
+from django.shortcuts import render
+from django.contrib import messages
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from .forms import PacienteForm
+from .logic.pacientes_logic import get_pacientes, create_paciente, get_paciente, update_paciente
 
-@csrf_exempt
-def pacientes_view(request):
-    if request.method == 'GET':
-        id = request.GET.get("id", None)
-        if id:
-            paciente_dto = pl.get_paciente(id)
-            paciente = serializers.serialize('json', [paciente_dto,])
-            return HttpResponse(paciente, 'application/json')
-        else:
-            pacientes_dto = pl.get_pacientes()
-            pacientes = serializers.serialize('json', pacientes_dto)
-            return HttpResponse(pacientes, 'application/json')
+def paciente_list(request):
+    pacientes = get_pacientes()
+    context = {
+        'paciente_list': pacientes
+    }
+    return render(request, 'Paciente/pacientes.html', context)
 
+def paciente_create(request):
     if request.method == 'POST':
-        paciente_dto = pl.create_paciente(json.loads(request.body))
-        paciente = serializers.serialize('json', [paciente_dto,])
-        return HttpResponse(paciente, 'application/json')
+        form = PacienteForm(request.POST)
+        if form.is_valid():
+            create_paciente(form)
+            messages.add_message(request, messages.SUCCESS, 'Successfully created paciente')
+            return HttpResponseRedirect(reverse('pacienteCreate'))
+        else:
+            print(form.errors)
+    else:
+        form = PacienteForm()
 
-@csrf_exempt
-def paciente_view(request, pk):
-    if request.method == 'GET':
-        paciente_dto = pl.get_paciente(pk)
-        paciente = serializers.serialize('json', [paciente_dto,])
-        return HttpResponse(paciente, 'application/json')
-
-    if request.method == 'PUT':
-        paciente_dto = pl.update_paciente(pk, json.loads(request.body))
-        paciente = serializers.serialize('json', [paciente_dto,])
-        return HttpResponse(paciente, 'application/json')
+    context = {
+        'form': form,
+    }
+    return render(request, 'Paciente/pacienteCreate.html', context)

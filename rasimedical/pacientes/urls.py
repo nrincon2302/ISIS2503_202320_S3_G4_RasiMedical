@@ -1,8 +1,9 @@
-from django.contrib import admin
 from django.urls import path
+from django.views.decorators.csrf import csrf_exempt
+
 from . import views
 
 urlpatterns = [
-    path('', views.pacientes_view, name='pacientes_view'),
-    path('<int:pk>', views.paciente_view, name='paciente_view'),
+    path('pacientes/', views.paciente_list, name='pacienteList'),
+    path('pacientes/pacientecreate/', csrf_exempt(views.paciente_create), name='pacienteCreate'),
 ]

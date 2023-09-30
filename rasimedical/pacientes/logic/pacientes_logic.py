@@ -17,12 +17,7 @@ def update_paciente(pac_pk, new_pac):
     paciente.save()
     return paciente
 
-def create_paciente(pac):
-    paciente = Paciente(nombre=pac["nombre"], apellido=pac["apellido"], edad=pac["edad"], correo=pac["correo"])
+def create_paciente(form):
+    paciente = form.save()
     paciente.save()
-    return paciente
-
-def agendar_cita(medico, fecha):
-    medico.citas.add(fecha)
-    medico.save()
-    return medico
+    return ()
