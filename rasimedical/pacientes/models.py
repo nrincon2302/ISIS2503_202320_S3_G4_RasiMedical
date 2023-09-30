@@ -8,8 +8,6 @@ class Paciente(models.Model):
     apellido = models.CharField(max_length=50)
     edad = models.IntegerField()
     correo = models.EmailField(max_length=50)
-    # Médico tiene una relación ManyToMany con Paciente
-    medicos = models.ManyToManyField(Medico)
 
     def __str__(self):
         return '{}{}. {} años.'.format(self.nombre, self.apellido, self.edad)

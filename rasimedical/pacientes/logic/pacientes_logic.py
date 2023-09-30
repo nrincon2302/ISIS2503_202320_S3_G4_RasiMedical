@@ -21,3 +21,8 @@ def create_paciente(pac):
     paciente = Paciente(nombre=pac["nombre"], apellido=pac["apellido"], edad=pac["edad"], correo=pac["correo"])
     paciente.save()
     return paciente
+
+def agendar_cita(medico, fecha):
+    medico.citas.add(fecha)
+    medico.save()
+    return medico
