@@ -33,25 +33,11 @@
                         {% for medico in medico_list %}
                         <tr>
                             <td>{{ medico.nombre }}</td>
+                            <td>{{ medico.apellido }}</td>
+                            <td>{{ medico.especialidad }}</td>
+                            <td>{{ medico.correo }}</td>
+                            <td>{{ medico.edad }}</td>
                         </tr>
-
-                        <tr>
-                          <td>{{ medico.apellido }}</td>
-                        </tr>
-
-                        <tr>
-                          <td>{{ medico.especialidad }}</td>
-                        </tr>
-
-                        <tr>
-                          <td>{{ medico.correo }}</td>
-                        </tr>
-
-                        <tr>
-                          <td>{{ medico.edad }}</td>
-                        </tr>
-
-
                         {% endfor %}
 
                         </tbody>
