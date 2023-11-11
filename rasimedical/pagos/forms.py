@@ -12,6 +12,10 @@ class PagosForm(forms.ModelForm):
             'paciente',
         ]
 
+        widgets = {
+            'fecha_pago': forms.DateInput(attrs={'type': 'date'}),
+        }
+
         labels = {
             'fecha_pago': 'Fecha de pago',
             'monto_pago': 'Monto de pago',
