@@ -15,7 +15,7 @@ def pago_list(request):
     context = {
         'pago_list': pagos
     }
-    return render(request, 'pago/pagos.html', context)
+    return render(request, 'Pago/pagos.html', context)
 
 def pago_create(request):
     start = time.time()
@@ -38,4 +38,4 @@ def pago_create(request):
     }
     end = time.time()
     print("Tomó un tiempo de: ", end - start)
-    return render(request, 'pago/pagoCreate.html', context)
+    return render(request, 'Pago/pagoCreate.html', context)
