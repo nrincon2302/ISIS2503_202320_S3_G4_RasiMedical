@@ -6,7 +6,7 @@ from django.urls import reverse
 from .models import Paciente
 
 from .forms import PagosForm
-from .logic.logic_pagos import *
+from .logic.logic_pagos import get_pagos, get_pago, update_pago, create_pago
 
 import time
 
