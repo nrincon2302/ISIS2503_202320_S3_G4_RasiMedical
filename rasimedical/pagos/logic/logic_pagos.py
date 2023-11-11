@@ -22,7 +22,7 @@ def update_pago(pago_pk, new_pago):
 
 
 def create_pago(pago, pac_id):
-    pago = pago(fecha_pago=pago["fecha_pago"], 
+    pago = Pago(fecha_pago=pago["fecha_pago"].value(), 
                 monto_pago=pago["monto_pago"].value(), 
                 tipo_pago=pago["tipo_pago"].value(), 
                 paciente=pac_id)
