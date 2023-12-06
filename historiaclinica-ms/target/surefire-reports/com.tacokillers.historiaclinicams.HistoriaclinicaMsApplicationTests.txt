@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.tacokillers.historiaclinicams.HistoriaclinicaMsApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 138.9 s -- in com.tacokillers.historiaclinicams.HistoriaclinicaMsApplicationTests

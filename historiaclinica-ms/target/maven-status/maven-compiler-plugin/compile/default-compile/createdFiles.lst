@@ -1,0 +1,7 @@
+com\tacokillers\historiaclinicams\repository\HistoriaClinicaRepository.class
+com\tacokillers\historiaclinicams\controller\CitaController.class
+com\tacokillers\historiaclinicams\controller\HistoriaClinicaController.class
+com\tacokillers\historiaclinicams\entity\Cita.class
+com\tacokillers\historiaclinicams\entity\HistoriaClinica.class
+com\tacokillers\historiaclinicams\HistoriaclinicaMsApplication.class
+com\tacokillers\historiaclinicams\repository\CitaRepository.class
